@@ -95,17 +95,23 @@ public:
     delete tempNode;
   }
 
-  void print(char join[]) {
+  string print(char join[]) {
     // Define a temp link to the Node so we can read the values.
     Node<T>* tempNode = this->head;
+    string output = "";
 
     //While the tempNode is not empty:
     while (tempNode != nullptr) {
       //Print the value of the current node.
-      cout << tempNode->value << join;
+      output += tempNode->value;
+      // add the join character to the output.
+      output += join;
       //Set the tempNode to the next node.
       tempNode = tempNode->next;
     }
+
+    // reverse the string.
+    return output;
   }
 };
 
@@ -179,7 +185,9 @@ int main() {
   // Output postfix
   cout << "Postfix: ";
   char join[] = "";
-  postfix.print(join);
-  cout << endl;
+  string out = postfix.print(join);
+  reverse(out.begin(), out.end());
+  cout << out << endl;
+  cout << endl; 
   return 0;
 }
